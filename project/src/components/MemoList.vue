@@ -3,7 +3,7 @@
     <button class="new_button" @click="resetView">New</button>
     <div class="memolist_container">
       <div class="edit_memo">
-        <div v-if="editMemoValue">
+        <div v-if="editMode">
             <h3>Edit</h3>
             <p class="memo">{{ title(editMemoValue) }}</p>
             <textarea v-model="editMemoValue"/>
@@ -44,7 +44,8 @@ export default {
       memos: [],
       newMemo: null,
       editMemoKey: null,
-      editMemoValue: null
+      editMemoValue: null,
+      editMode: false
     }
   },
   mounted() {
@@ -66,6 +67,7 @@ export default {
       this.saveMemos()
     },
     editMemo(key) {
+      this.editMode = true
       this.editMemoKey = key
       this.editMemoValue = this.memos[key]
     },
@@ -90,7 +92,7 @@ export default {
       return content.split('\n')[0]
     },
     resetView() {
-      this.editMemoValue = null
+      this.editMode = false
     }
   }
 }
