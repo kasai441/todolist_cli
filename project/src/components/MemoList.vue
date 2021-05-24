@@ -62,7 +62,7 @@ export default {
         return
       }
       this.memos.push(this.newMemo)
-      this.newMemo = ''
+      this.newMemo = null
       this.saveMemos()
     },
     editMemo(key) {
