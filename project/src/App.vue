@@ -6,7 +6,6 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import MemoList from './components/MemoList.vue'
 
 export default {

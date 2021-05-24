@@ -1,5 +1,5 @@
 <template>
-  <div id="memolist">
+  <div>
     <button class="new_button" @click="resetView">New</button>
     <div class="memolist_container">
       <div class="edit_memo">
@@ -39,20 +39,18 @@
 
 export default {
   name: 'MemoList',
-  data: function () {
+  data() {
     return {
       memos: [],
       newMemo: null,
       editMemoKey: null,
-      editMemoValue: null,
-      editValue: null
+      editMemoValue: null
     }
   },
   mounted() {
     if (localStorage.getItem('memos')) {
       try {
         this.memos = JSON.parse(localStorage.getItem('memos'))
-        console.log(this.memos)
       } catch(e) {
         localStorage.removeItem('memos')
       }
@@ -64,7 +62,6 @@ export default {
         return
       }
       this.memos.push(this.newMemo)
-      console.log(this.memos)
       this.newMemo = ''
       this.saveMemos()
     },
