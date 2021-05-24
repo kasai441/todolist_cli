@@ -73,15 +73,16 @@ export default {
     },
     updateMemo() {
       if (!this.editMemoValue) {
+        alert('空欄のメモは保存できません')
         return
       }
       this.memos.splice(this.editMemoKey, 1, this.editMemoValue)
-      this.editMemoValue = null
+      this.resetView()
       this.saveMemos()
     },
     removeMemo() {
       this.memos.splice(this.editMemoKey, 1)
-      this.editMemoValue = null
+      this.resetView()
       this.saveMemos()
     },
     saveMemos() {
@@ -89,9 +90,10 @@ export default {
       localStorage.setItem('memos', parsed)
     },
     title(content) {
-      return content.split('\n')[0]
+      if (content) return content.split('\n')[0]
     },
     resetView() {
+      this.editMemoValue = null
       this.editMode = false
     }
   }
