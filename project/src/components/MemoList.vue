@@ -8,8 +8,8 @@
             <p class="memo">{{ title(editMemoValue) }}</p>
             <textarea v-model="editMemoValue"/>
             <div>
-              <button @click="updateMemo(editMemoKey)">Update</button>
-              <button @click="removeMemo(editMemoKey)">Remove</button>
+              <button @click="updateMemo()">Update</button>
+              <button @click="removeMemo()">Remove</button>
             </div>
         </div>
         <div v-else>
@@ -69,16 +69,16 @@ export default {
       this.editMemoKey = key
       this.editMemoValue = this.memos[key]
     },
-    updateMemo(key) {
+    updateMemo() {
       if (!this.editMemoValue) {
         return
       }
-      this.memos.splice(key, 1, this.editMemoValue)
+      this.memos.splice(this.editMemoKey, 1, this.editMemoValue)
       this.editMemoValue = null
       this.saveMemos()
     },
-    removeMemo(key) {
-      this.memos.splice(key, 1)
+    removeMemo() {
+      this.memos.splice(this.editMemoKey, 1)
       this.editMemoValue = null
       this.saveMemos()
     },
